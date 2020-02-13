@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EventDetailsActivity.class) ;
 
         // Fill the intent with the details about the clicked event.
+        /** Added the image name to the intent. */
+        intent.putExtra("ImageName", clickedEvent.getImageName()) ;
+
         intent.putExtra("Artist", clickedEvent.getArtist()) ;
         intent.putExtra("Date", clickedEvent.getDate()) ;
 

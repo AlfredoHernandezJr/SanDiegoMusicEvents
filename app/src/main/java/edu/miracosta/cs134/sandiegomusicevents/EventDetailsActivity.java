@@ -3,9 +3,15 @@ package edu.miracosta.cs134.sandiegomusicevents;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class EventDetailsActivity extends AppCompatActivity {
 
@@ -42,6 +48,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         // Extract the intent (from MainActivity)
         Intent intent = getIntent() ;
 
+        String imageName = intent.getStringExtra("ImageName") ;
+
         String artist = intent.getStringExtra("Artist") ;
         String date = intent.getStringExtra("Date") ;
 
@@ -53,10 +61,22 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         String dateDay = date + " " + day ;
 
+        ImageView musicEventimageView = eventImageView ;
+        AssetManager am = getAssets() ;
+
+        try
+        {
+            InputStream stream = am.open(imageName) ;
+            Drawable image = Drawable.createFromStream(stream, artist) ;
+            musicEventimageView.setImageDrawable(image) ;
+        } catch (IOException e)
+        {
+            Log.e("SD Music Events", "Error loading " + artist, e) ;
+        }
+
         eventArtistTextView.setText(artist) ;
         eventDateTextView.setText(dateDay);
 
-        // eventDayTextView.setText(day) ;
         eventTimeTextView.setText(time) ;
 
         eventVenueTextView.setText(venue) ;
