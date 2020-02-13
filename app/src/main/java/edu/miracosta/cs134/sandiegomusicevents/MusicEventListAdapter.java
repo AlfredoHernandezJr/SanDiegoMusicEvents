@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,12 +49,22 @@ public class MusicEventListAdapter extends ArrayAdapter<MusicEvent> {
 
         MusicEvent selectedEvent = mMusicEventList.get(position) ;
 
+        // Wire up the linear layout
+
+
+        LinearLayout musicEventLinearLayout = view.findViewById(R.id.musicEventListLinearLayout) ;
+
+
         // "Inflate" the information about the artist name and date.
         TextView musicEventListTextView = view.findViewById(R.id.musicEventListTextView) ;
         musicEventListTextView.setText(selectedEvent.getArtist()) ;
 
         TextView musicEventListDateTextView = view.findViewById(R.id.musicEventListDateTextView) ;
         musicEventListDateTextView.setText(selectedEvent.getDate()) ;
+
+        // Set its tag (hidden locker) to be the selected music event.
+        musicEventLinearLayout.setTag(selectedEvent) ;
+
 
         ImageView musicEventimageView = view.findViewById(R.id.musicEventListImageView) ;
         AssetManager am = mContext.getAssets() ;
