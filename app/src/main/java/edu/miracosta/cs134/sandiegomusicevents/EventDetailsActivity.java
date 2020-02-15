@@ -21,11 +21,11 @@ public class EventDetailsActivity extends AppCompatActivity {
     TextView eventArtistTextView ;
     TextView eventDateTextView ;
 
-    TextView eventDayTextView ;
     TextView eventTimeTextView ;
-
     TextView eventVenueTextView ;
+
     TextView eventCityTextView ;
+    TextView eventStateTextView ;
 
 
     @Override
@@ -39,27 +39,28 @@ public class EventDetailsActivity extends AppCompatActivity {
         eventArtistTextView = findViewById(R.id.eventArtistTextView) ;
         eventDateTextView = findViewById(R.id.eventDateDayTextView) ;
 
-        // eventDayTextView = findViewById(R.id.eventDateDayTextView) ;
         eventTimeTextView = findViewById(R.id.eventTimeTextView) ;
-
         eventVenueTextView = findViewById(R.id.eventVenueTextView) ;
+
         eventCityTextView = findViewById(R.id.eventCityTextView) ;
+        eventStateTextView = findViewById(R.id.eventStateTextView) ;
 
         // Extract the intent (from MainActivity)
         Intent intent = getIntent() ;
 
         String imageName = intent.getStringExtra("ImageName") ;
-
         String artist = intent.getStringExtra("Artist") ;
+
         String date = intent.getStringExtra("Date") ;
-
         String day = intent.getStringExtra("Day") ;
+
         String time = intent.getStringExtra("Time") ;
-
         String venue = intent.getStringExtra("Venue") ;
-        String city = intent.getStringExtra("City") ;
 
-        String dateDay = date + " " + day ;
+        String city = intent.getStringExtra("City") ;
+        String state = intent.getStringExtra("State") ;
+
+        String dateDay = (date + ", " + day) ;
 
         ImageView musicEventimageView = eventImageView ;
         AssetManager am = getAssets() ;
@@ -76,11 +77,10 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         eventArtistTextView.setText(artist) ;
         eventDateTextView.setText(dateDay);
-
         eventTimeTextView.setText(time) ;
-
         eventVenueTextView.setText(venue) ;
         eventCityTextView.setText(city) ;
+        eventStateTextView.setText(state) ;
 
     }
 }
